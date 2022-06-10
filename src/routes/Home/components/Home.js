@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { MapContainer } from "./MapContainer";
-import { enableLatestRenderer } from 'react-native-maps';
-import { Container }  from "react-bootstrap";
 
 class Home extends React.Component{
+
+
     componentDidMount(){
-        this.props.setName();
+        this.props.getCurrentLocation();
     }
     render(){
         const region = {
@@ -15,16 +15,22 @@ class Home extends React.Component{
             latitudeDelta:0.0922,
             longitudeDelta:0.0421
         }
+        
 
         
 
-// enableLatestRenderer();
+
 
         return(
             
                 <View style={{flex:1, justifyContent:"center",alignItems:"center"}}>
-                <MapContainer region={region}/>
-                <Text>Hello {this.props.name}</Text>
+                    {this.props.region.latitude &&
+                    <MapContainer region={this.props.region}/>
+                    }
+
+                    
+                
+                    <Text>Hello {this.props.name}</Text>
                 </View>
             
             
