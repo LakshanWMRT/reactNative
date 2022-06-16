@@ -4,7 +4,7 @@ import HomeContainer from "./Home/container/HomeContainer";
 
 
 const scenes = Actions.create(
-	<Scene key="root" hideNavBar>
+	<Scene key="map" hideNavBar>
 		<Scene key="home" component={HomeContainer} title="home" initial />
 	</Scene>
 

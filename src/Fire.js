@@ -17,6 +17,7 @@ class Fire {
                 measurementId: "G-M5RBNTBNZ9"
             });
         }
+        
     }
 
     checkAuth=()=>{
@@ -58,7 +59,7 @@ class Fire {
         return firebase.database().ref("messages")
     }
     get uid(){
-        return(firebase.auth().currentUser || {}).uid
+        return(firebase.auth().currentUser ).uid
     }
 
     

@@ -14,10 +14,11 @@ function HomePage({ route, navigation }) {
             
             <View><Image style={styles.image} source={require("./assets/images/profile-girl.png")} /></View>
             <ScrollView style={styles.scroll}>
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.popToTop()}><Text style={styles.buttonText}>Logout</Text></TouchableOpacity>
+            
             <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('ProfilePicture')}><Text style={styles.buttonText}>Edit Profile picture</Text></TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("ScrollList")}><Text style={styles.buttonText}>View Shedule</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("")}><Text style={styles.buttonText}>Add Booking</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("AboutUs")}><Text style={styles.buttonText}>Help</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>navigation.popToTop()}><Text style={styles.buttonText}>Logout</Text></TouchableOpacity>
             
             </ScrollView>
             <TouchableOpacity style={styles.continue} onPress={()=>navigation.navigate("ChatPage",name)}><Text style={styles.buttonText}>Chat</Text></TouchableOpacity>
@@ -30,8 +31,8 @@ const styles =StyleSheet.create({
         backgroundColor:'#F4F5F7',
         alignItems:"center",
         justifyContent:"center",
-        paddingTop:40,
-        paddingHorizontal:20,
+        paddingTop:20,
+        
     },
     body1:{
         textAlign:"center",
@@ -41,9 +42,10 @@ const styles =StyleSheet.create({
     },
     body2:{
         textAlign:"center",
-        color:"red",
+        color:"black",
         fontSize:30,
         marginBottom:20,
+        
     },
     
     button:{
@@ -60,13 +62,15 @@ const styles =StyleSheet.create({
     image:{
         width:200,
         height:200,
-        borderRadius:200/2
+        borderRadius:100,
+        borderColor:"yellow",
+        borderWidth:10
     },
     buttonText:{
         color:"white"
     },
     scroll:{
-        paddingHorizontal:70
+        paddingHorizontal:70,
     },
     circle:{
         width:500,

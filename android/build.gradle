@@ -9,8 +9,10 @@ buildscript {
         ndkVersion = "21.4.7075529"
     }
     repositories {
+        jcenter()
         google()
         mavenCentral()
+        
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.2")
@@ -27,6 +29,9 @@ allprojects {
             url("$rootDir/../node_modules/react-native/android")
         }
         maven {
+            url "https://maven.google.com" 
+        }
+        maven {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
@@ -37,6 +42,7 @@ allprojects {
                 excludeGroup "com.facebook.react"
             }
         }
+        jcenter()
         google()
         maven { url 'https://www.jitpack.io' }
     }

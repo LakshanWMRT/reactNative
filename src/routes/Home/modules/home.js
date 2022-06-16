@@ -2,8 +2,13 @@ import update from "react-addons-update";
 import constants from "./actionConstants";
 import Geolocation from '@react-native-community/geolocation';
 import { Dimensions } from "react-native";
+import RNGooglePlaces from "react-native-google-places";
 
-const {GET_CURRENT_LOCATION} = constants;
+const {
+	GET_CURRENT_LOCATION, 
+	GET_INPUT, 
+	TOGGLE_SEARCH_RESULT, 
+	GET_ADDRESS_PREDICTIONS } = constants;
 
 const {width, height} = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -23,10 +28,44 @@ export function getCurrentLocation(){
 				});
 			},
 			(error)=> console.log(error.message),
-			{enableHighAccuracy: false, timeout: 10000, maximumAge: 10000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
+			{enableHighAccuracy: false, timeout: 100000, maximumAge: 10000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              }
 		);
 	}
 }
+
+export function getInputData(payload){
+	return{
+		type:GET_INPUT,
+		payload
+	}
+}
+
+export function toggleSearchResultModal(payload){
+	return{
+		type:TOGGLE_SEARCH_RESULT,
+		payload
+	}
+}
+
+export function getAddressPrediction(){
+	return(dispatch, store)=>{
+		let userInput = store().home.resultTypes.pickUp ? store().home.inputData.pickUp : store().home.inputData.dropOff;
+		RNGooglePlaces.getAutocompletePredictions(userInput, 
+			{
+				country:"LK"
+			}
+		)
+		.then((results)=>
+			dispatch({
+				type:GET_ADDRESS_PREDICTIONS,
+				payload:results
+			})
+		)
+		.catch((error)=>console.log(error.message))
+	};
+}
+
+
 
 function handleGetCurrentLocation(state, action){
 	return update(state, {
@@ -43,6 +82,58 @@ function handleGetCurrentLocation(state, action){
 			longitudeDelta:{
 				$set:LONGITUDE_DELTA
 			}
+		}
+	})
+}
+
+function handleGetInputData(state, action){
+	const { key, value} = action.payload;
+	return update(state, {
+		inputData:{
+			[key]:{
+				$set:value
+			}
+		}
+	})
+}
+
+function handleToggleSearchResult(state, action){
+	if(action.payload === "pickUp"){
+		return update(state, {
+			resultTypes:{
+				pickUp:{
+					$set:true
+				},
+				dropOff:{
+					$set:false
+				}
+			},
+			predictions:{
+				$set:{}
+			}
+		});
+	}
+	if(action.payload === "dropOff"){
+		return update(state, {
+			resultTypes:{
+				pickUp:{
+					$set:false
+				},
+				dropOff:{
+					$set:true
+				}
+			},
+			predictions:{
+				$set:{}
+			}
+		});
+	}
+}
+
+function handleGetAddressPredictions(state, action){
+	return update(state, {
+		predictions:{
+			$set:action.payload
 		}
 	})
 }
@@ -64,10 +155,16 @@ function handleGetCurrentLocation(state, action){
 // }
 
 const ACTION_HANDLERS = {
-    GET_CURRENT_LOCATION:handleGetCurrentLocation
+    GET_CURRENT_LOCATION:handleGetCurrentLocation,
+	GET_INPUT:handleGetInputData,
+	TOGGLE_SEARCH_RESULT:handleToggleSearchResult,
+	GET_ADDRESS_PREDICTIONS:handleGetAddressPredictions
 };
 const initialState = {
-    region:{}
+    region:{},
+	inputData:{},
+	resultTypes:{}
+	
 };
 
 export function HomeReducer (state = initialState, action){
