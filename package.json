@@ -10,12 +10,15 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@draftbit/ui": "^44.2.2",
+    "@react-native-async-storage/async-storage": "^1.17.7",
     "@react-native-community/geolocation": "^2.1.0",
     "@react-navigation/native": "^6.0.7",
     "@react-navigation/native-stack": "^6.3.0",
     "@rneui/base": "^4.0.0-rc.4",
     "@rneui/themed": "github:react-native-elements/react-native-elements#themed",
     "firebase": "^9.6.8",
+    "jwt-decode": "^3.1.2",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-addons-update": "^15.6.3",
@@ -34,7 +37,8 @@
     "redux-socket.io": "^1.4.0",
     "redux-thunk": "^2.4.1",
     "socket.io": "^4.5.1",
-    "socket.io-client": "^4.5.1"
+    "socket.io-client": "^4.5.1",
+    "superagent": "^7.1.6"
   },
   "devDependencies": {
     "@babel/core": "7.16.12",

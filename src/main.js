@@ -5,7 +5,7 @@ import { View,StyleSheet,Text, Button, TouchableOpacity, Image} from "react-nati
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import HomePage from "./HomePage";
-import ProfilePicture from "./profilePicture";
+import Profile from "./profile";
 import ScrollList from "./listScroll";
 import LoginPage from "./login";
 import ChatPage from "./chat";
@@ -85,7 +85,15 @@ class App extends Component{
                         ),
                         title:"Home"
                     }}/>
-                    <Stack.Screen name="ProfilePicture" component={ProfilePicture}/>
+                    <Stack.Screen name="Profile" component={Profile} options={{
+                        headerRight: () => (
+                            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                <Icon name='account-circle'
+                                    size={30} color="yellow" />
+                            </View>
+                        ),
+                        title: "Profile"
+                    }}/>
                     <Stack.Screen name="ScrollList" component={ScrollList} options={{
                         headerRight: () => (
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>

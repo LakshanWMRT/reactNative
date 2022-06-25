@@ -3,11 +3,11 @@ import { View,Text, ScrollView, StyleSheet } from "react-native";
 
 export default function ScrollList({navigation}){
     const [SetPeople]=useState([
-        {name:'Katubedda:       2.30pm',key:'1'},
-        {name:'Office:       2.30pm',key:'2'},
-        {name:'Petta:       2.30pm',key:'3'},
-        {name:'School:       2.30pm',key:'4'},
-        {name:'Maharagama:       2.30pm',key:'5'},
+        {name:'Katubedda:            now',key:'1'},
+        {name:'Office:                 2.30pm',key:'2'},
+        {name:'Petta:                  2.30pm',key:'3'},
+        {name:'School:               2.30pm',key:'4'},
+        {name:'Maharagama:    2.30pm',key:'5'},
     ]);
 
     return(
@@ -38,6 +38,8 @@ const style= StyleSheet.create({
         padding:50,
         fontSize:24,
         backgroundColor:'yellow',
+        borderRadius:40
+        
     },
     topic:{
         alignContent:"center",
@@ -45,6 +47,7 @@ const style= StyleSheet.create({
         margin:2,
         backgroundColor:"black",
         color:"yellow",
-        fontSize:15
+        fontSize:15,
+        borderRadius:12
     }
 })

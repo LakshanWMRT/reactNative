@@ -1,9 +1,30 @@
-import React,{Component} from "react";
+import React,{useState}  from "react";
 import { View,StyleSheet,Text, Button,Image, TouchableOpacity, ScrollView } from "react-native";
+import jwtDecode from 'jwt-decode'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HomePage({ route, navigation }) {
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [VehicleModel, setVehicleModel] = useState("");
+    const [Date, setDate] = useState("");
+
+    AsyncStorage.getItem("usertoken")
+        .then((result) => {
+            const decode = jwtDecode(result);
+
+            if(decode.tag=="driver"){}
+            setEmail(decode.email)
+            setName(decode.VehicleOwner)
+            setVehicleModel(decode.VehicleModel)
+            setDate(decode.Date)
+        })
+
+
     
-    const { name } = route.params;
+    
+    
     return (
         <View style={styles.view}>
 
@@ -15,7 +36,7 @@ function HomePage({ route, navigation }) {
             <View><Image style={styles.image} source={require("./assets/images/profile-girl.png")} /></View>
             <ScrollView style={styles.scroll}>
             
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('ProfilePicture')}><Text style={styles.buttonText}>Edit Profile picture</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Profile')}><Text style={styles.buttonText}>Profile</Text></TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("ScrollList")}><Text style={styles.buttonText}>View Shedule</Text></TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("AboutUs")}><Text style={styles.buttonText}>Help</Text></TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={()=>navigation.popToTop()}><Text style={styles.buttonText}>Logout</Text></TouchableOpacity>

@@ -15,7 +15,7 @@ export const MapContainer = ({region, getInputData, toggleSearchResultModal, get
             >
                 <MapView.Marker
                         coordinate={region}
-                        pinColor="green"
+                        pinColor="red"
                     />
                 </MapView>
 

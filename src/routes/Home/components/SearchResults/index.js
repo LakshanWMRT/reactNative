@@ -20,8 +20,8 @@ export const SearchResults = ({predictions})=>{
             
             <SafeAreaView style={styles.searchResultsWrapper}>
                 <ListItem ><Button 
-                    icon={<Icon name="location-on" size={25} color="white"/>} title="ListItem" /></ListItem>
-                {/* <ListItem><TouchableOpacity><Text>ListItem</Text><Icon name="location-on"/></TouchableOpacity></ListItem> */}
+                    icon={<Icon name="location-on" size={25} color="white"/>} title="ListItem" style={styles.leftContainer}/></ListItem>
+                <ListItem><TouchableOpacity ><Text>ListItem</Text><Icon name="location-on"/></TouchableOpacity></ListItem>
                 <ListItem><Text>ListItem</Text></ListItem>
             </SafeAreaView>
             

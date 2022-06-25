@@ -14,8 +14,8 @@ export default class ChatPage extends React.Component{
     
     get user(){
         return{
-            _id:5,
-            // _id:Fire.uid,
+            // _id:5,
+            _id:Fire.uid,
             // name:"jj",
             name:this.props.route.params
         }
@@ -23,9 +23,9 @@ export default class ChatPage extends React.Component{
 
     componentDidMount(){
         console.log(Fire.uid),
-        Fire.get(message=>
+        Fire.get(messages=>
             this.setState(previous=>({
-            messages:GiftedChat.append(message,message)
+            messages:GiftedChat.append(previous.messages,messages)
             }))
         )
     }
