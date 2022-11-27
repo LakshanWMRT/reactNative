@@ -42,7 +42,7 @@ export default function LoginPage({navigation}){
             </View>
 
             <View style={styles.checkboxContainer}>
-            <CheckBox title={"staff"}
+            <CheckBox title={"Staff"}
                 checked={staff}
                 onPress={() => setStaff(!staff)& setDriver(false)& setPassenger(false) & setRoll("staff")}
                 checkedIcon={'dot-circle-o'}
@@ -50,14 +50,14 @@ export default function LoginPage({navigation}){
                 checkedColor='#f5c71a'
                 
             />
-            <CheckBox title={"passenger"}
+            <CheckBox title={"Parent"}
                 checked={passenger}
-                onPress={() => setPassenger(!passenger) & setStaff(false) & setDriver(false) & setRoll("passenger")}
+                onPress={() => setPassenger(!passenger) & setStaff(false) & setDriver(false) & setRoll("parent")}
                 checkedIcon={'dot-circle-o'}
                 uncheckedIcon={'dot-circle-o'}
                 checkedColor='#f5c71a'
             />
-            <CheckBox title={"driver"}
+            <CheckBox title={"Driver"}
                 checked={driver}
                 onPress={() => setDriver(!driver) & setPassenger(false) & setStaff(false) & setRoll("driver")}
                 checkedIcon={'dot-circle-o'}
@@ -81,9 +81,6 @@ export default function LoginPage({navigation}){
 
 const combined=({navigation,email,password,roll})=>{
     
-
-
-    console.log(roll)
     if(email=='' || password==''){
         alert("please fill with the correct credentials")
     }else if(roll==''){
@@ -92,30 +89,34 @@ const combined=({navigation,email,password,roll})=>{
     else{
         login({email,password,roll})
         AsyncStorage.getItem("usertoken").then(res=>{
-            jwtDecode(res);
-            navigation.navigate("HomePage")
-
+            const decode = jwtDecode(res);
+            if (decode.tag)
+                navigation.navigate("HomePage")
+            console.log(decode.tag)
+            // 
+            
         }).catch(err=>{
             alert("Please check again Email, Password & Connectivity")
         })
         
-        
     }
-    
+    // navigation.navigate("HomePage")
     
 }
 
 
 
 const login = ({email,password,roll})=>{
-    fetch('http://10.0.2.2:4000/app/login',{
+    //
+    fetch('http://localhost:4000/app/login',{
         method:'POST',
         headers:{
             'Content-Type' : 'application/json'
         },
         body:JSON.stringify({
             email:email,
-            password:password
+            password:password,
+            tag:roll
         })
     }).then(res => res.text())
     .then(res =>{

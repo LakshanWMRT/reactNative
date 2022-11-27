@@ -3,16 +3,15 @@ import { View,Text, ScrollView, StyleSheet } from "react-native";
 
 export default function ScrollList({navigation}){
     const [SetPeople]=useState([
-        {name:'Katubedda:            now',key:'1'},
-        {name:'Office:                 2.30pm',key:'2'},
-        {name:'Petta:                  2.30pm',key:'3'},
-        {name:'School:               2.30pm',key:'4'},
-        {name:'Maharagama:    2.30pm',key:'5'},
+        {name:'Chat Room 1',key:'1'},
+        {name:'Chat Room 2',key:'2'},
+        {name:'Chat Room 3',key:'3'},
+        {name:'Chat Room 4',key:'4'},
     ]);
 
     return(
         <View style={style.container}>
-            <Text style={style.topic}>Ongoing Routes</Text>
+            <Text style={style.topic}>See Locations</Text>
             <ScrollView>
                 {SetPeople.map((item)=>{
                     return(

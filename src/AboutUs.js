@@ -8,14 +8,14 @@ export default class AboutUs extends Component {
             <ScrollView >
             
                 <Tile
-                    title="Autobot Brain"
+                    title="Chat App by Lakshan"
                     
-                    imageSrc={require("./assets/images/Taxi.png")}
-                    imageContainerStyle={{opacity:0.3}}
+                    imageSrc={require("./assets/images/ic_launcher.png")}
+                    imageContainerStyle={{opacity:0.6}}
                     
                     featured={false}
                     activeOpacity={0.8}
-                    width={400}
+                    width={420}
                     height={550}
 
                 > 

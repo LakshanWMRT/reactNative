@@ -21,7 +21,10 @@ function Profile({ route, navigation }) {
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [VehicleModel, setVehicleModel] = useState("");
+    const [lastName,setLastName] = useState("");
+    const [city, setCity] = useState("");
+    const [company,setCompany] = useState("");
+    const [phoneNumber,setPhoneNumber] = useState("");
     const [Date, setDate] = useState("");
 
     AsyncStorage.getItem("usertoken")
@@ -30,8 +33,11 @@ function Profile({ route, navigation }) {
 
             if(decode.tag=="driver"){}
             setEmail(decode.email)
-            setName(decode.VehicleOwner)
-            setVehicleModel(decode.VehicleModel)
+            setName(decode.firstName)
+            setLastName(decode.lastName)
+            setCity(decode.city)
+            setCompany(decode.company)
+            setPhoneNumber(decode.phoneNumber)
             setDate(decode.Date)
         })
     
@@ -40,7 +46,7 @@ function Profile({ route, navigation }) {
             hasSafeArea={false}>
             <ImageBackground
                 style={styles.imageBackgroundNb}
-                source={require("./assets/images/Taxi.png")}
+                source={require("./assets/images/ic_launcher.png")}
                 resizeMode="cover"
             />
             <Container
@@ -51,10 +57,10 @@ function Profile({ route, navigation }) {
                 <Image
                     style={StyleSheet.flatten([
                         styles.imageA3,
-                        { borderRadius: 10 },
+                        { borderRadius: 60 },
                     ])}
                     resizeMode="cover"
-                    source={require("./assets/images/profile-girl.png")}
+                    source={require("./assets/images/myDp.jpg")}
                 /> 
 
                 <Text
@@ -62,7 +68,7 @@ function Profile({ route, navigation }) {
                         styles.textPr
                     ])}
                 >
-                    {name}
+                    {name} 
                 </Text>
                 {/* <Button style={styles.buttonP2} type="outline">
                     Edit Profile
@@ -70,13 +76,83 @@ function Profile({ route, navigation }) {
             </Container>
 
             <Container useThemeGutterPadding={true} elevation={0}>
+            <Touchable
+                    style={StyleSheet.flatten([
+                        styles.touchableOk,
+                    ])}
+                >
+
+
+                    <View style={styles.viewKs}>
+                        <Text >last name  : {lastName}</Text>
+
+                        <Icon
+                            style={styles.iconFE}
+                            size={24}
+                            name="account-circle"
+                        />
+                    </View>
+                </Touchable>
+                        
+
+
+                <Touchable
+                    style={StyleSheet.flatten([
+                        styles.touchableOk,
+                    ])}
+                >
+
+
+                    <View style={styles.viewKs}>
+                        <Text >email  : {email}</Text>
+
+                        <Icon
+                            style={styles.iconFE}
+                            size={24}
+                            name="account-circle"
+                        />
+                    </View>
+                </Touchable>
+                <Touchable
+                    style={StyleSheet.flatten([
+                        styles.touchableOk,
+                    ])}
+                >
+
+                    
+                    <View style={styles.viewKs}>
+                        <Text >city   :  {city}</Text>
+
+                        <Icon
+                            style={styles.iconFE}
+                            size={24}
+                            name="account-circle"
+                        />
+                    </View>
+                </Touchable>
+
                 <Touchable
                     style={StyleSheet.flatten([
                         styles.touchableOk,
                     ])}
                 >
                     <View style={styles.viewKs}>
-                        <Text >Privacy Settings</Text>
+                        <Text >company  :  {company}</Text>
+                        <Icon
+                            style={styles.iconFE}
+                            size={24}
+                            name="account-circle"
+                        />
+                    </View>
+                </Touchable>
+
+                <Touchable
+                    style={StyleSheet.flatten([
+                        styles.touchableOk,
+                    ])}
+                >
+                    <View style={styles.viewKs}>
+                        <Text >phoneNumber  :  {phoneNumber}</Text>
                         <Icon
                             style={styles.iconFE}
                             size={24}
@@ -95,37 +171,7 @@ function Profile({ route, navigation }) {
                         <Icon
                             style={styles.iconFE}
                             size={24}
-                            name="account-circle"
-                        />
-                    </View>
-                </Touchable>
-
-                <Touchable
-                    style={StyleSheet.flatten([
-                        styles.touchableOk,
-                    ])}
-                >
-                    <View style={styles.viewKs}>
-                        <Text >Privacy Settings</Text>
-                        <Icon
-                            style={styles.iconFE}
-                            size={24}
-                            name="account-circle"
-                        />
-                    </View>
-                </Touchable>
-
-                <Touchable
-                    style={StyleSheet.flatten([
-                        styles.touchableOk,
-                    ])}
-                >
-                    <View style={styles.viewKs}>
-                        <Text >Privacy Settings</Text>
-                        <Icon
-                            style={styles.iconFE}
-                            size={24}
-                            name="account-circle"
+                            name="settings"
                         />
                     </View>
                 </Touchable>

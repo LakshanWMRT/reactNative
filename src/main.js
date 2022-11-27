@@ -41,7 +41,7 @@ function WelcomeScreen({navigation}) {
                 {/* <View style={styles.circle}/> */}
                 <Text style={styles.body1}>Welcome</Text>
                 <Text style={styles.body2}>To</Text>
-                <Text style={styles.body3}>Driver Booking</Text>
+                <Text style={styles.body3}>Chat App</Text>
                 <TouchableOpacity  style={styles.button} onPress={()=>navigation.navigate('LoginPage')}><Text style={styles.getStartFont}>Start</Text></TouchableOpacity>
             </View>  
         );
@@ -101,7 +101,7 @@ class App extends Component{
                                     type='evilicon' size={30} color="yellow" />
                             </View>
                         ),
-                        title: "Shedules"
+                        title: "Find friends"
                     }}/>
                     <Stack.Screen name="LoginPage" component={LoginPage} options={{
                         headerRight: () => (
@@ -114,10 +114,10 @@ class App extends Component{
                     <Stack.Screen name="ChatPage" component={ChatPage} options={{
                         headerRight: () => (
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                <Image style={styles.image} source={require("./assets/images/Taxi.png")} />
+                                <Image style={styles.image} source={require("./assets/images/chat_icon.png")} />
                             </View>
                         ),
-                        title:"Driver Chat"
+                        title:"Chat"
                     }} />
                     <Stack.Screen name="Map" component={Map} options={{
                         headerRight: () => (

@@ -2,9 +2,8 @@ import React from "react";
 import { Platform,KeyboardAvoidingView,SafeAreaView,StyleSheet,View,Image ,Text } from "react-native";
 import Fire from "./Fire";
 import {GiftedChat} from 'react-native-gifted-chat';
-import { Tile } from "@rneui/themed";
-import { color, darkColors } from "@rneui/base";
-import { colors } from "react-native-elements";
+
+
 
 export default class ChatPage extends React.Component{
     
@@ -14,10 +13,10 @@ export default class ChatPage extends React.Component{
     
     get user(){
         return{
-            // _id:5,
-            _id:Fire.uid,
-            // name:"jj",
-            name:this.props.route.params
+            _id:5,
+            //_id:Fire.uid,
+            name:"Lakshan",
+            // name:this.props.route.params
         }
     }
 
@@ -26,7 +25,9 @@ export default class ChatPage extends React.Component{
         Fire.get(messages=>
             this.setState(previous=>({
             messages:GiftedChat.append(previous.messages,messages)
+            
             }))
+            
         )
     }
     componentWillUnmount(){
